@@ -1,0 +1,34 @@
+{
+  "name": "fieldless",
+  "version": "0.0.1",
+  "authors": [
+    "Jim OBrien <jimobrien930@gmail.com>"
+  ],
+  "description": "Provision custom fields faster",
+  "main": [
+    "dist/js/fieldless.js"
+  ],
+  "keywords": [
+    "Salesforce",
+    "custom",
+    "fields",
+    "xml"
+  ],
+  "license": "MIT",
+  "homepage": "fieldless.io",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "Gruntfile.js",
+    "sftp-config.json"
+  ],
+  "dependencies": {
+    "angular-bootstrap": "~0.10.0",
+    "angular-highlightjs": "~0.2.5",
+    "angular-route": "~1.2.14",
+    "angular-xeditable": "~0.1.8",
+    "bootstrap": "~3.1.1",
+    "highlightjs": "~8.0.0"
+  }
+}

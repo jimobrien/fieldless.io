@@ -1,0 +1,87 @@
+<!doctype html>
+<html ng-app="fieldless">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+
+		<title>fieldless</title>
+		<link rel="stylesheet" href="bower_components/bootstrap/css/bootstrap.css" >
+		<link rel="stylesheet" href="bower_components/bootflat/css/bootflat.css">
+		<link rel="stylesheet" href="bower_components/angular-xeditable/dist/css/xeditable.css">
+		<link rel="stylesheet" href="bower_components/highlightjs/styles/github.css">
+
+		<style>
+			header > div {
+				padding: 10px 0;
+			}
+			pre {
+				max-height: 300px;
+				background-color: #f8f8f8;
+			}
+			#logo {
+				font-size: 1.5em;
+				font-style: italic;
+				font-weight: 600;
+				color: #3bafda;
+				cursor: pointer;
+			}
+			#wth,
+			#wth a{
+				color: #aab2bd;
+				font-size: 11px;
+				font-weight: normal;
+				font-style: normal;
+			}
+			#main {
+				padding-top: 35px;
+			}
+			#btn-selectall { 
+				margin:0 0 15px 15px;
+			}
+			#no-fields {
+				padding: 40px;
+				border: 2px dashed #aab2bd;
+				border-radius: 5px;
+				text-align: center;
+				color: #666;
+			}
+			.close-box { 
+				width: 25px; 
+			}
+			.close { 
+				width: 25px; 
+				font-size: .9em;
+				top: 4;
+			}
+			.form-horizontal .control-label { 
+				padding-top: 0; 
+			}
+			.editable-buttons {
+				vertical-align: middle;
+			}
+		</style>
+
+	</head>
+	<body class="container">
+
+		<header class="row">
+			<div class="col-sm-offset-1 col-sm-10">
+				<div id="logo">fieldless <span id="wth">- <a href="http://jimobrien.me/provision-fields-faster-with-fieldless" target="_blank">what's fieldless?</a></span></div>
+			</div>
+		</header>
+
+		<section id="main" class="row" ng-view>
+		</section>
+
+		<script src="bower_components/jquery/dist/jquery.js"></script>
+		<script src="bower_components/highlightjs/highlight.pack.js"></script>
+		<script src="bower_components/angular/angular.js"></script>
+		<script src="bower_components/angular-route/angular-route.js"></script>
+		<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+		<script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
+		<script src="bower_components/angular-highlightjs/angular-highlightjs.js"></script>
+
+		<script src="dist/js/fieldless.js"></script>
+
+	</body>
+</html>

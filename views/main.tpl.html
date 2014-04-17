@@ -1,0 +1,82 @@
+<section class="col-sm-offset-1 col-sm-5">
+  <div id="create">
+    <h4> Create Fields </h4>
+
+    <form name="fieldForm" class="form-horizontal" role="form" ng-submit="create(true)" novalidate>
+      
+      <ng-form name="fieldFormIn" ng-repeat="f in formFields">
+        <div class="form-group" ng-class="{'has-error': !fieldFormIn.anInput.$pristine && fieldFormIn.anInput.$invalid}"  ng-show="f.show === 'always' || f.show">
+            
+              <label for="{{f.name}}" class="col-sm-3 control-label"> {{f.label}}</label>
+              <div class="col-sm-8">
+
+                  <input ng-if="f.type === 'text'" type="{{f.type}}" class="form-control input-sm" name="anInput" placeholder="{{f.placeholder}}" ng-model="field[f.name]"  ng-required="f.show">
+
+                  <input ng-if="f.type === 'number'" type="{{f.type}}" class="form-control input-sm" name="anInput" placeholder="{{f.placeholder}}" ng-model="field[f.name]" ng-required="f.show" ng-min="formFields[$index].validation.min" ng-max="formFields[$index].validation.max">
+
+                  <input ng-if="f.type === 'checkbox'" type="{{f.type}}" class="form-control input-sm" name="anInput" placeholder="{{f.placeholder}}" ng-model="field[f.name]">
+
+                  <select ng-if="f.type === 'select'" name="anInput" type="{{f.selectType}}" class="form-control input-sm" ng-model="field[f.name]" ng-change="toggleFields(f.name)" ng-options="o.value as o.name for o in f.selectOptions" ng-required="f.show">
+                    <option value=""></option>
+                  </select>
+
+                  <textarea ng-if="f.type === 'textarea'" class="form-control input-sm" name="anInput" ng-model="field[f.name]" placeholder="{{f.placeholder}}" ng-required="f.show"></textarea>
+
+                  <div ng-if="f.type === 'radio'">
+                     
+                      <label class="radio-inline" ng-repeat="option in f.options">
+                        <input type="radio" name="opt" value="{{option}}" class="input-sm" checked ng-required="f.show" ng-model="field.defaultValue">{{option}}
+                      </label>
+                  </div>
+
+              </div>
+          
+        </div>
+      </ng-form>
+
+      <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-8">
+          <button type="submit" class="btn btn-primary" style="width:100%" ng-disabled="fieldForm.$invalid ">Create</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div id="output">    
+
+    <h4> Output </h4>
+    <div ng-show="fields.length <= 0">
+      <div id="no-fields">
+        <h6>The generated XML will appear here. When you're done creating fields, copy/paste the XML into eclipse and save!</h6>
+      </div>
+    </div>  
+
+    <div class="row">
+      <button id="btn-selectall" class="btn btn-default btn-xs " ng-click="selectAll('xml')" ng-show="fields.length > 0">Select All</button>
+    </div>
+
+    <div id="xml"  hljs source="fieldXML" ng-show="fields.length > 0"></div>
+
+  </div>
+
+</section>
+
+
+<section class="col-sm-5" id="field-table">
+
+    <h4> Fields </h4>
+    <div ng-show="fields.length <= 0">
+      <div id="no-fields">
+        <h6>Fields you create will be listed here. You can rename or delete the fields you create. </h6>
+      </div>
+    </div>  
+
+    <table class="table table-condensed table-striped table-bordered">
+      <tr ng-repeat="field in fields">
+        <td> <span editable-text="fields[$index].name">{{field.name}}</span> </td>
+        <td>  {{field.type}} </td>
+        <td class="close-box"><button type="button" class="close glyphicon glyphicon-remove" data-dismiss="alert" aria-hidden="true" ng-click="remove($index)"></button></td>
+      </tr>
+    </table>
+
+</section>	
