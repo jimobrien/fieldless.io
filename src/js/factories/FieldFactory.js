@@ -44,6 +44,10 @@
 			if (obj.required) { 
 				newfield.isRequired = TagFactory.generate('Required', obj.required);
 			}
+			
+			if (obj.description) {
+				newfield.description = TagFactory.generate('Description', obj.description);
+			}
 
 			// if the type isn't set through the specific constructor, set it now.
 			if (!newfield.type) { 

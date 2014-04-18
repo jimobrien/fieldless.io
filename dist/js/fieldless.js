@@ -222,6 +222,10 @@ function isEmpty(value) {
 			if (obj.required) { 
 				newfield.isRequired = TagFactory.generate('Required', obj.required);
 			}
+			
+			if (obj.description) {
+				newfield.description = TagFactory.generate('Description', obj.description);
+			}
 
 			// if the type isn't set through the specific constructor, set it now.
 			if (!newfield.type) { 
@@ -425,6 +429,10 @@ function isEmpty(value) {
 
 		self.DefaultPicklistVal  = function (bool) {
 			return ['\t\t<default>', bool || false, '</default>\r\n'];	
+		};
+
+		self.Description  = function (bool) {
+			return ['<description>', bool || false, '</description>'];	
 		};
 
 		self.ValName = function (name) {
@@ -635,7 +643,7 @@ function isEmpty(value) {
 					label: 'Name',
 					type: 'text',
 					show: 'always',
-					placeholder: 'Your Field'
+					placeholder: 'Your field name'
 				},
 				{
 					name: 'type',
@@ -716,6 +724,13 @@ function isEmpty(value) {
 					placeholder: ''
 				},
 				{
+					name: 'description',
+					label: 'Description',
+					type: 'textarea',
+					show: 'always',
+					placeholder: 'What is this field for?'
+				},
+				{
 					name: 'dataType',
 					label: 'Data Type',
 					type: 'select',
@@ -756,21 +771,12 @@ function isEmpty(value) {
 					placeholder: ''
 				},
 				{
-					name: 'visibleLines',
-					label: 'Visible Lines',
-					type: 'number',
-					show: false,
-					validation: { },
-					showFor: ['RichTextArea', 'LongTextArea', 'MultiselectPicklist'],
-					placeholder: ''
-				},
-				{
 					name: 'sfobject',
 					label: 'Object',
 					type: 'text',
 					show: false,
 					showFor: ['MasterDetail', 'Lookup'],
-					placeholder: 'The object you\'re creating the field for'
+					placeholder: 'The object the field is being created on'
 				},
 				{
 					name: 'lookupObject',
@@ -795,6 +801,15 @@ function isEmpty(value) {
 					show: false,
 					showFor: ['Picklist', 'MultiselectPicklist'],
 					placeholder: 'List each item on a separate line'
+				},
+				{
+					name: 'visibleLines',
+					label: 'Visible Lines',
+					type: 'number',
+					show: false,
+					validation: {},
+					showFor: ['RichTextArea', 'LongTextArea', 'MultiselectPicklist'],
+					placeholder: ''
 				},
 				{
 					name: 'required',

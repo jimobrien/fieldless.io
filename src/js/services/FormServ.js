@@ -38,7 +38,7 @@
 					label: 'Name',
 					type: 'text',
 					show: 'always',
-					placeholder: 'Your Field'
+					placeholder: 'Your field name'
 				},
 				{
 					name: 'type',
@@ -119,6 +119,13 @@
 					placeholder: ''
 				},
 				{
+					name: 'description',
+					label: 'Description',
+					type: 'textarea',
+					show: 'always',
+					placeholder: 'What is this field for?'
+				},
+				{
 					name: 'dataType',
 					label: 'Data Type',
 					type: 'select',
@@ -159,21 +166,12 @@
 					placeholder: ''
 				},
 				{
-					name: 'visibleLines',
-					label: 'Visible Lines',
-					type: 'number',
-					show: false,
-					validation: { },
-					showFor: ['RichTextArea', 'LongTextArea', 'MultiselectPicklist'],
-					placeholder: ''
-				},
-				{
 					name: 'sfobject',
 					label: 'Object',
 					type: 'text',
 					show: false,
 					showFor: ['MasterDetail', 'Lookup'],
-					placeholder: 'The object you\'re creating the field for'
+					placeholder: 'The object the field is being created on'
 				},
 				{
 					name: 'lookupObject',
@@ -198,6 +196,15 @@
 					show: false,
 					showFor: ['Picklist', 'MultiselectPicklist'],
 					placeholder: 'List each item on a separate line'
+				},
+				{
+					name: 'visibleLines',
+					label: 'Visible Lines',
+					type: 'number',
+					show: false,
+					validation: {},
+					showFor: ['RichTextArea', 'LongTextArea', 'MultiselectPicklist'],
+					placeholder: ''
 				},
 				{
 					name: 'required',

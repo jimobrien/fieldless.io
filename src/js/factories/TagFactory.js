@@ -112,6 +112,10 @@
 			return ['\t\t<default>', bool || false, '</default>\r\n'];	
 		};
 
+		self.Description  = function (bool) {
+			return ['<description>', bool || false, '</description>'];	
+		};
+
 		self.ValName = function (name) {
 			return ['\t\t<fullName>', name, '</fullName>\r\n'];
 		};
