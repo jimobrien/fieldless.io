@@ -20,7 +20,7 @@
                     <option value=""></option>
                   </select>
 
-                  <textarea ng-if="f.type === 'textarea'" rows="5" class="form-control input-sm" name="anInput" ng-model="field[f.name]" placeholder="{{f.placeholder}}" ng-required="f.show"></textarea>
+                  <textarea ng-if="f.type === 'textarea'" rows="5" class="form-control input-sm" name="anInput" ng-model="field[f.name]" placeholder="{{f.placeholder}}" ng-required="f.show && f.name !== 'description'"></textarea>
 
                   <div ng-if="f.type === 'radio'">
                      
