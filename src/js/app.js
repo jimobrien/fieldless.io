@@ -2,6 +2,8 @@ function isEmpty(value) {
 	return angular.isUndefined(value) || value === '' || value === null || value !== value;
 }
 
+
+
 ( function (w) {
 
 	w.fieldless = angular.module('fieldless', ['ngRoute', 'ui.bootstrap', 'xeditable', 'hljs']);

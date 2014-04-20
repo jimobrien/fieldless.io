@@ -18,6 +18,9 @@
 				max-height: 300px;
 				background-color: #f8f8f8;
 			}
+			label {
+				font-size: 13px;
+			}
 			input[type='checkbox'] { 
 				width: 20px; /* otherwise firefox blows this up */
 			}
@@ -62,6 +65,13 @@
 			.editable-buttons {
 				vertical-align: middle;
 			}
+			.info {
+				color: #999;
+				font-size: .9em;
+			}
+			.info:hover {
+				color: #333;
+			}
 		</style>
 
 	</head>
@@ -85,6 +95,17 @@
 		<script src="bower_components/angular-highlightjs/angular-highlightjs.js"></script>
 
 		<script src="dist/js/fieldless.js"></script>
+		
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		  ga('create', 'UA-48433019-2', 'fieldless.io');
+		  ga('send', 'pageview');
+
+		</script>
 
 	</body>
 </html>

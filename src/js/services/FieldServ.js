@@ -13,19 +13,30 @@
 
 			for (f in fields) {
 
-				if (fields[f].showFor && fields[f].show !== 'always') {
-					
-					if (fields[f].showFor instanceof Array) {
-						showField = fields[f].showFor.map(toLowerCase).indexOf(ftype) > -1 ? true : false;
-					} else {
-						showField = fields[f].showFor.toLowerCase().indexOf(ftype.toLowerCase())  > -1;	
+				if (fields[f].show !== 'always') {
+
+					if (fields[f].showFor) {
+						
+						if (fields[f].showFor instanceof Array) {
+							showField = fields[f].showFor.map(toLowerCase).indexOf(ftype) > -1 ? true : false;
+						} else {
+							showField = fields[f].showFor.toLowerCase().indexOf(ftype.toLowerCase())  > -1;	
+						}
+						
+					} else if (fields[f].showForExcept) {
+						if (fields[f].showForExcept instanceof Array) {
+							showField = fields[f].showForExcept.map(toLowerCase).indexOf(ftype) < 0 ? true : false;
+						} else {
+							showField = fields[f].showFor.toLowerCase().indexOf(ftype.toLowerCase()) < 0;	
+						}
 					}
 
-					if (showField)
+					if (showField) {
 						fields[f].show = true;
-					else 
+					} else {
 						fields[f].show = false;
-					
+					}
+
 				}
 
 			}

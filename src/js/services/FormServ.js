@@ -148,14 +148,13 @@
 					showFor: 'Formula',
 					placeholder: ''
 				},
-				{
-					name: 'externalId',
-					label: 'External Id',
-					type: 'checkbox',
-					show: false,
-					showFor: '',
-					placeholder: ''
-				},
+				// {
+				// 	name: 'externalId',
+				// 	label: 'External Id',
+				// 	type: 'checkbox',
+				// 	show: false,
+				// 	placeholder: ''
+				// },
 				{
 					name: 'length',
 					label: 'Length',
@@ -171,13 +170,18 @@
 					type: 'text',
 					show: false,
 					showFor: ['MasterDetail', 'Lookup'],
+					hasTooltip: true,
+					tooltip: 'Enter the API name of the object that you\'re creating the field on. ' +
+							 'If it\'s a custom object, exclude the \"__c.\" <br><br> <b>Example:</b> My_Custom_Object',
 					placeholder: 'The object the field is being created on'
 				},
 				{
 					name: 'lookupObject',
-					label: 'Lookup Object',
+					label: 'Lookup',
 					type: 'text',
 					show: false,
+					hasTooltip: true,
+					tooltip: 'Enter the API name of the object that you\'d like to create the lookup to',
 					showFor: ['MasterDetail', 'Lookup'],
 					placeholder: 'The lookup object'
 				},
@@ -195,6 +199,8 @@
 					type: 'textarea',
 					show: false,
 					showFor: ['Picklist', 'MultiselectPicklist'],
+					hasTooltip: true,
+					tooltip: 'You can mark a value as the default by surraunding it in asterisks. <br><br><b>Example:</b> *Default Val*',
 					placeholder: 'List each item on a separate line'
 				},
 				{
@@ -210,7 +216,8 @@
 					name: 'required',
 					label: 'Required',
 					type: 'checkbox',
-					show: 'always',
+					show: false,
+					showForExcept: ['MultiselectPicklist'],
 					placeholder: ''
 				},
 				{

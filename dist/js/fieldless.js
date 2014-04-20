@@ -2,6 +2,8 @@ function isEmpty(value) {
 	return angular.isUndefined(value) || value === '' || value === null || value !== value;
 }
 
+
+
 ( function (w) {
 
 	w.fieldless = angular.module('fieldless', ['ngRoute', 'ui.bootstrap', 'xeditable', 'hljs']);
@@ -40,7 +42,7 @@ function isEmpty(value) {
 			if (field === 'type') {
 				var ftype  = $scope.field.type.toLowerCase();
 				FieldServ.toggleVisibility($scope.formFields, ftype);
-				FieldServ.setFieldValidation($scope.field.type, $scope.formFields);
+				FieldServ.setFieldValidation(ftype, $scope.formFields);
 				FieldServ.setFieldDefaults($scope.field);
 			}
 		};
@@ -222,7 +224,7 @@ function isEmpty(value) {
 			if (obj.required) { 
 				newfield.isRequired = TagFactory.generate('Required', obj.required);
 			}
-			
+
 			if (obj.description) {
 				newfield.description = TagFactory.generate('Description', obj.description);
 			}
@@ -309,8 +311,7 @@ function isEmpty(value) {
 		};
 
 
-		FieldFactory.Percent = FieldFactory.Number;
-
+		FieldFactory.Percent  = FieldFactory.Number;
 		FieldFactory.Currency = FieldFactory.Number;
 
 		return FieldFactory;
@@ -478,19 +479,30 @@ function isEmpty(value) {
 
 			for (f in fields) {
 
-				if (fields[f].showFor && fields[f].show !== 'always') {
-					
-					if (fields[f].showFor instanceof Array) {
-						showField = fields[f].showFor.map(toLowerCase).indexOf(ftype) > -1 ? true : false;
-					} else {
-						showField = fields[f].showFor.toLowerCase().indexOf(ftype.toLowerCase())  > -1;	
+				if (fields[f].show !== 'always') {
+
+					if (fields[f].showFor) {
+						
+						if (fields[f].showFor instanceof Array) {
+							showField = fields[f].showFor.map(toLowerCase).indexOf(ftype) > -1 ? true : false;
+						} else {
+							showField = fields[f].showFor.toLowerCase().indexOf(ftype.toLowerCase())  > -1;	
+						}
+						
+					} else if (fields[f].showForExcept) {
+						if (fields[f].showForExcept instanceof Array) {
+							showField = fields[f].showForExcept.map(toLowerCase).indexOf(ftype) < 0 ? true : false;
+						} else {
+							showField = fields[f].showFor.toLowerCase().indexOf(ftype.toLowerCase()) < 0;	
+						}
 					}
 
-					if (showField)
+					if (showField) {
 						fields[f].show = true;
-					else 
+					} else {
 						fields[f].show = false;
-					
+					}
+
 				}
 
 			}
@@ -753,14 +765,13 @@ function isEmpty(value) {
 					showFor: 'Formula',
 					placeholder: ''
 				},
-				{
-					name: 'externalId',
-					label: 'External Id',
-					type: 'checkbox',
-					show: false,
-					showFor: '',
-					placeholder: ''
-				},
+				// {
+				// 	name: 'externalId',
+				// 	label: 'External Id',
+				// 	type: 'checkbox',
+				// 	show: false,
+				// 	placeholder: ''
+				// },
 				{
 					name: 'length',
 					label: 'Length',
@@ -776,13 +787,18 @@ function isEmpty(value) {
 					type: 'text',
 					show: false,
 					showFor: ['MasterDetail', 'Lookup'],
+					hasTooltip: true,
+					tooltip: 'Enter the API name of the object that you\'re creating the field on. ' +
+							 'If it\'s a custom object, exclude the \"__c\" <br><br> <b>Example:</b> My_Custom_Object',
 					placeholder: 'The object the field is being created on'
 				},
 				{
 					name: 'lookupObject',
-					label: 'Lookup Object',
+					label: 'Lookup',
 					type: 'text',
 					show: false,
+					hasTooltip: true,
+					tooltip: 'Enter the API name of the object that you\'d like to create the lookup to',
 					showFor: ['MasterDetail', 'Lookup'],
 					placeholder: 'The lookup object'
 				},
@@ -800,6 +816,8 @@ function isEmpty(value) {
 					type: 'textarea',
 					show: false,
 					showFor: ['Picklist', 'MultiselectPicklist'],
+					hasTooltip: true,
+					tooltip: 'You can mark a value as the default by surraunding it in asterisks. <br><br><b>Example:</b> *Default Val*',
 					placeholder: 'List each item on a separate line'
 				},
 				{
@@ -815,7 +833,8 @@ function isEmpty(value) {
 					name: 'required',
 					label: 'Required',
 					type: 'checkbox',
-					show: 'always',
+					show: false,
+					showForExcept: ['MultiselectPicklist'],
 					placeholder: ''
 				},
 				{

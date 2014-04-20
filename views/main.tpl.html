@@ -1,4 +1,4 @@
-<section class="col-sm-offset-1 col-sm-5">
+<section class="col-lg-5 col-sm-6 col-sm-offset-1 ">
   <div id="create">
     <h4> Create Fields </h4>
 
@@ -7,7 +7,7 @@
       <ng-form name="fieldFormIn" ng-repeat="f in formFields">
         <div class="form-group" ng-class="{'has-error': !fieldFormIn.anInput.$pristine && fieldFormIn.anInput.$invalid}"  ng-show="f.show === 'always' || f.show">
             
-              <label for="{{f.name}}" class="col-sm-3 control-label"> {{f.label}}</label>
+              <label for="{{f.name}}" class="col-sm-3 control-label"> {{f.label}} <i ng-if="f.hasTooltip" class="glyphicon glyphicon-info-sign info" tooltip-html-unsafe="{{f.tooltip}}" tooltip-placement="right" tooltip-append-to-body="true" id="{{$index}}"></i></label> 
               <div class="col-sm-8">
 
                   <input ng-if="f.type === 'text'" type="{{f.type}}" class="form-control input-sm" name="anInput" placeholder="{{f.placeholder}}" ng-model="field[f.name]"  ng-required="f.show">

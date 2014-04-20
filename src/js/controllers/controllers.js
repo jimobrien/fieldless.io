@@ -13,7 +13,7 @@
 			if (field === 'type') {
 				var ftype  = $scope.field.type.toLowerCase();
 				FieldServ.toggleVisibility($scope.formFields, ftype);
-				FieldServ.setFieldValidation($scope.field.type, $scope.formFields);
+				FieldServ.setFieldValidation(ftype, $scope.formFields);
 				FieldServ.setFieldDefaults($scope.field);
 			}
 		};

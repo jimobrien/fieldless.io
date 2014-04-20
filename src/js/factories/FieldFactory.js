@@ -44,7 +44,7 @@
 			if (obj.required) { 
 				newfield.isRequired = TagFactory.generate('Required', obj.required);
 			}
-			
+
 			if (obj.description) {
 				newfield.description = TagFactory.generate('Description', obj.description);
 			}
@@ -131,8 +131,7 @@
 		};
 
 
-		FieldFactory.Percent = FieldFactory.Number;
-
+		FieldFactory.Percent  = FieldFactory.Number;
 		FieldFactory.Currency = FieldFactory.Number;
 
 		return FieldFactory;
