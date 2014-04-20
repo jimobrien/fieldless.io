@@ -165,15 +165,14 @@
 					placeholder: ''
 				},
 				{
-					name: 'sfobject',
-					label: 'Object',
+					name: 'relName',
+					label: 'Relationship Name',
 					type: 'text',
 					show: false,
 					showFor: ['MasterDetail', 'Lookup'],
 					hasTooltip: true,
-					tooltip: '<div class="ttip">Enter the API name of the object that you\'re creating the field on. ' +
-							 'If it\'s a custom object, exclude the \"__c.\" <br><br> <b>Example:</b> My_Custom_Object </div>',
-					placeholder: 'The object the field is being created on'
+					tooltip: '<div class="ttip">The relationship name appears as the title of the related list on the related object. </div>',
+					placeholder: 'The name of the relationship'
 				},
 				{
 					name: 'lookupObject',
@@ -181,7 +180,7 @@
 					type: 'text',
 					show: false,
 					hasTooltip: true,
-					tooltip: '<div class="ttip">Enter the API name of the object that you\'d like to create the lookup to</div>',
+					tooltip: '<div class="ttip">Enter the API name of the object that you\'d like to create the lookup to.</div>',
 					showFor: ['MasterDetail', 'Lookup'],
 					placeholder: 'The lookup object'
 				},

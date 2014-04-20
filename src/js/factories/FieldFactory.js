@@ -105,8 +105,8 @@
 
 
 		FieldFactory.Lookup = function (obj) {
-			this.relName  = TagFactory.generate('RelName', obj.sfobject);
-			this.relLabel = TagFactory.generate('RelLabel', obj.sfobject);
+			this.relName  = TagFactory.generate('RelName', obj.relName);
+			this.relLabel = TagFactory.generate('RelLabel', obj.relName);
 			this.refTo    = TagFactory.generate('RefTo', obj.lookupObject);
 		};
 
@@ -123,8 +123,8 @@
 
 
 		FieldFactory.MasterDetail = function (obj) {
-			this.relName  = TagFactory.generate('RelName', obj.sfobject);
-			this.relLabel = TagFactory.generate('RelLabel', obj.sfobject);
+			this.relName  = TagFactory.generate('RelName', obj.relName);
+			this.relLabel = TagFactory.generate('RelLabel', obj.relName);
 			this.refTo    = TagFactory.generate('RefTo', obj.lookupObject);
 			this.relOrder = TagFactory.generate('RelOrder', relationshipOrderCount);
 			this.mastRead = TagFactory.generate('MastRead', obj.mastRead || false);
@@ -137,9 +137,9 @@
 		FieldFactory.Currency = FieldFactory.Number;
 
 		function cleanseData (obj) {
-			// strip __c from custom objects
-			if (obj.sfobject) {
-				obj.sfobject = obj.sfobject.replace("__c", "");
+			// strip __c incase it was included by user
+			if (obj.relName) {
+				obj.relName = obj.relName.replace("__c", ""); 
 			}
 
 			return obj;

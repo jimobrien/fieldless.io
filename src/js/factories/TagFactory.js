@@ -52,6 +52,7 @@
 		};
 
 		self.RelName = function (name) {
+			name = name.split(" ").join("_"); // replace spaces with "_"
 			return ['<relationshipName>',name,'</relationshipName>'];	
 		};
 

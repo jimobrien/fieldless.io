@@ -285,8 +285,8 @@ function isEmpty(value) {
 
 
 		FieldFactory.Lookup = function (obj) {
-			this.relName  = TagFactory.generate('RelName', obj.sfobject);
-			this.relLabel = TagFactory.generate('RelLabel', obj.sfobject);
+			this.relName  = TagFactory.generate('RelName', obj.relName);
+			this.relLabel = TagFactory.generate('RelLabel', obj.relName);
 			this.refTo    = TagFactory.generate('RefTo', obj.lookupObject);
 		};
 
@@ -303,8 +303,8 @@ function isEmpty(value) {
 
 
 		FieldFactory.MasterDetail = function (obj) {
-			this.relName  = TagFactory.generate('RelName', obj.sfobject);
-			this.relLabel = TagFactory.generate('RelLabel', obj.sfobject);
+			this.relName  = TagFactory.generate('RelName', obj.relName);
+			this.relLabel = TagFactory.generate('RelLabel', obj.relName);
 			this.refTo    = TagFactory.generate('RefTo', obj.lookupObject);
 			this.relOrder = TagFactory.generate('RelOrder', relationshipOrderCount);
 			this.mastRead = TagFactory.generate('MastRead', obj.mastRead || false);
@@ -317,9 +317,9 @@ function isEmpty(value) {
 		FieldFactory.Currency = FieldFactory.Number;
 
 		function cleanseData (obj) {
-			// strip __c from custom objects
-			if (obj.sfobject) {
-				obj.sfobject = obj.sfobject.replace("__c", "");
+			// strip __c incase it was included by user
+			if (obj.relName) {
+				obj.relName = obj.relName.replace("__c", ""); 
 			}
 
 			return obj;
@@ -384,6 +384,7 @@ function isEmpty(value) {
 		};
 
 		self.RelName = function (name) {
+			name = name.split(" ").join("_"); // replace spaces with "_"
 			return ['<relationshipName>',name,'</relationshipName>'];	
 		};
 
@@ -794,15 +795,14 @@ function isEmpty(value) {
 					placeholder: ''
 				},
 				{
-					name: 'sfobject',
-					label: 'Object',
+					name: 'relName',
+					label: 'Relationship Name',
 					type: 'text',
 					show: false,
 					showFor: ['MasterDetail', 'Lookup'],
 					hasTooltip: true,
-					tooltip: '<div class="ttip">Enter the API name of the object that you\'re creating the field on. ' +
-							 'If it\'s a custom object, exclude the \"__c.\" <br><br> <b>Example:</b> My_Custom_Object </div>',
-					placeholder: 'The object the field is being created on'
+					tooltip: '<div class="ttip">The relationship name appears as the title of the related list on the related object. </div>',
+					placeholder: 'The name of the relationship'
 				},
 				{
 					name: 'lookupObject',
@@ -810,7 +810,7 @@ function isEmpty(value) {
 					type: 'text',
 					show: false,
 					hasTooltip: true,
-					tooltip: '<div class="ttip">Enter the API name of the object that you\'d like to create the lookup to</div>',
+					tooltip: '<div class="ttip">Enter the API name of the object that you\'d like to create the lookup to.</div>',
 					showFor: ['MasterDetail', 'Lookup'],
 					placeholder: 'The lookup object'
 				},
