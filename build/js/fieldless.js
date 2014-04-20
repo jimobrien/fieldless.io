@@ -800,8 +800,8 @@ function isEmpty(value) {
 					show: false,
 					showFor: ['MasterDetail', 'Lookup'],
 					hasTooltip: true,
-					tooltip: 'Enter the API name of the object that you\'re creating the field on. ' +
-							 'If it\'s a custom object, exclude the \"__c.\" <br><br> <b>Example:</b> My_Custom_Object',
+					tooltip: '<div class="ttip">Enter the API name of the object that you\'re creating the field on. ' +
+							 'If it\'s a custom object, exclude the \"__c.\" <br><br> <b>Example:</b> My_Custom_Object </div>',
 					placeholder: 'The object the field is being created on'
 				},
 				{
@@ -810,7 +810,7 @@ function isEmpty(value) {
 					type: 'text',
 					show: false,
 					hasTooltip: true,
-					tooltip: 'Enter the API name of the object that you\'d like to create the lookup to',
+					tooltip: '<div class="ttip">Enter the API name of the object that you\'d like to create the lookup to</div>',
 					showFor: ['MasterDetail', 'Lookup'],
 					placeholder: 'The lookup object'
 				},
@@ -829,7 +829,7 @@ function isEmpty(value) {
 					show: false,
 					showFor: ['Picklist', 'MultiselectPicklist'],
 					hasTooltip: true,
-					tooltip: 'You can mark a value as the default by surraunding it in asterisks. <br><br><b>Example:</b> *Default Val*',
+					tooltip: '<div class="ttip">You can mark a value as the default by surraunding it in asterisks. <br><br><b>Example:</b> *Default Val* </div>',
 					placeholder: 'List each item on a separate line'
 				},
 				{
