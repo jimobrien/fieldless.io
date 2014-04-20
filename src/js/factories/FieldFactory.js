@@ -26,6 +26,8 @@
 			var constr = type,
 				newfield;
 
+			obj = cleanseData(obj);
+
 			// if constr doesnt exist
 			if (typeof FieldFactory[constr] !== 'function') {
 				newfield = new FieldFactory(obj); // create basic tags
@@ -133,6 +135,16 @@
 
 		FieldFactory.Percent  = FieldFactory.Number;
 		FieldFactory.Currency = FieldFactory.Number;
+
+		function cleanseData (obj) {
+			// strip __c from custom objects
+			if (obj.sfobject) {
+				obj.sfobject = obj.sfobject.replace("__c", "");
+			}
+
+			return obj;
+		}
+
 
 		return FieldFactory;
 

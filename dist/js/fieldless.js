@@ -206,6 +206,8 @@ function isEmpty(value) {
 			var constr = type,
 				newfield;
 
+			obj = cleanseData(obj);
+
 			// if constr doesnt exist
 			if (typeof FieldFactory[constr] !== 'function') {
 				newfield = new FieldFactory(obj); // create basic tags
@@ -313,6 +315,16 @@ function isEmpty(value) {
 
 		FieldFactory.Percent  = FieldFactory.Number;
 		FieldFactory.Currency = FieldFactory.Number;
+
+		function cleanseData (obj) {
+			// strip __c from custom objects
+			if (obj.sfobject) {
+				obj.sfobject = obj.sfobject.replace("__c", "");
+			}
+
+			return obj;
+		}
+
 
 		return FieldFactory;
 
@@ -789,7 +801,7 @@ function isEmpty(value) {
 					showFor: ['MasterDetail', 'Lookup'],
 					hasTooltip: true,
 					tooltip: 'Enter the API name of the object that you\'re creating the field on. ' +
-							 'If it\'s a custom object, exclude the \"__c\" <br><br> <b>Example:</b> My_Custom_Object',
+							 'If it\'s a custom object, exclude the \"__c.\" <br><br> <b>Example:</b> My_Custom_Object',
 					placeholder: 'The object the field is being created on'
 				},
 				{
