@@ -6,7 +6,7 @@ function isEmpty(value) {
 
 ( function (w) {
 
-	w.fieldless = angular.module('fieldless', ['ngRoute', 'ui.bootstrap', 'xeditable', 'hljs']);
+	w.fieldless = angular.module('fieldless', ['ngRoute', 'ui.bootstrap', 'ui.select2', 'xeditable', 'hljs']);
 
 	// set xeditable theme to bs3
 	w.fieldless.run( function (editableOptions) {
@@ -746,7 +746,7 @@ function isEmpty(value) {
 							value: "MasterDetail"
 						}
 					],
-					placeholder: ''
+					placeholder: 'Select a field type'
 				},
 				{
 					name: 'description',

@@ -116,7 +116,7 @@
 							value: "MasterDetail"
 						}
 					],
-					placeholder: ''
+					placeholder: 'Select a field type'
 				},
 				{
 					name: 'description',

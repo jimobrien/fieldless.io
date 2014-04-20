@@ -7,6 +7,8 @@
 		<title>fieldless</title>
 		<link rel="stylesheet" href="bower_components/bootstrap/css/bootstrap.css" >
 		<link rel="stylesheet" href="bower_components/bootflat/css/bootflat.css">
+		<link rel="stylesheet" href="bower_components/select2/select2.css">
+		<link rel="stylesheet" href="bower_components/select2-bootstrap-css/select2-bootstrap.css">
 		<link rel="stylesheet" href="bower_components/angular-xeditable/dist/css/xeditable.css">
 		<link rel="stylesheet" href="bower_components/highlightjs/styles/github.css">
 
@@ -75,6 +77,18 @@
 			.ttip {
 				text-align: left;
 			}
+
+			/* select2-bootstrap-css overrides */
+
+			.select2-container .select2-choices .select2-search-field input,
+			.select2-container .select2-choice,
+			.select2-container .select2-choices {
+			  border-color: #aab2bd;
+			  font-family: inherit;
+			  filter: none;
+			  -webkit-box-shadow: none;
+			  box-shadow: none;
+			}
 		</style>
 
 	</head>
@@ -89,11 +103,13 @@
 		<section id="main" class="row" ng-view>
 		</section>
 
-		<script src="bower_components/jquery/dist/jquery.js"></script>
+		<script src="bower_components/jquery/dist/jquery.min.js"></script>
+		<script src="bower_components/select2/select2.min.js"></script>
 		<script src="bower_components/highlightjs/highlight.pack.js"></script>
 		<script src="bower_components/angular/angular.js"></script>
 		<script src="bower_components/angular-route/angular-route.js"></script>
 		<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+		<script src="bower_components/angular-ui-select2/src/select2.js"></script>
 		<script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
 		<script src="bower_components/angular-highlightjs/angular-highlightjs.js"></script>
 

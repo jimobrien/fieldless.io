@@ -1,7 +1,7 @@
 <section class="col-lg-5 col-sm-6 col-sm-offset-1 ">
   <div id="create">
     <h4> Create Fields </h4>
-
+  
     <form name="fieldForm" class="form-horizontal" role="form" ng-submit="create(true)" novalidate>
       
       <ng-form name="fieldFormIn" ng-repeat="f in formFields">
@@ -16,9 +16,12 @@
 
                   <input ng-if="f.type === 'checkbox'" type="{{f.type}}" class="form-control input-sm" name="anInput" placeholder="{{f.placeholder}}" ng-model="field[f.name]">
 
-                  <select ng-if="f.type === 'select'" name="anInput" type="{{f.selectType}}" class="form-control input-sm" ng-model="field[f.name]" ng-change="toggleFields(f.name)" ng-options="o.value as o.name for o in f.selectOptions" ng-required="f.show">
+                  <select ui-select2 ng-if="f.type === 'select'" name="anInput" type="{{f.selectType}}" class="form-control input-sm" ng-model="field[f.name]" ng-change="toggleFields(f.name)"  placeholder="{{f.placeholder}}"  ng-required="f.show">
                     <option value=""></option>
+                    <option ng-repeat="option in f.selectOptions" value="{{option.value}}">{{option.name}}</option>
                   </select>
+
+                  <!-- <select  ng-model="select2" data-placeholder="Pick a number"> </select> -->
 
                   <textarea ng-if="f.type === 'textarea'" rows="5" class="form-control input-sm" name="anInput" ng-model="field[f.name]" placeholder="{{f.placeholder}}" ng-required="f.show && f.name !== 'description'"></textarea>
 
